@@ -1,18 +1,18 @@
-name: Keep HuggingFace Space Alive
+name: Keep HuggingFace Space Alive  # 工作流名称
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
-  workflow_dispatch:
+    - cron: '0 */12 * * *'  # 每12小时执行一次
+  workflow_dispatch:         # 支持手动触发
 
 jobs:
   keep-alive:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 运行环境
     steps:
-      - name: Ping HuggingFace Space
+      - name: Ping HuggingFace Space  # 步骤名称
         run: |
-          # 请将下面的 URL 改为你的 HuggingFace Space 地址
-          curl -s -o /dev/null -w "%{http_code}" https://huggingface.co/spaces/<YOUR_USERNAME>/<YOUR_SPACE_NAME> || true
-          curl -s -o /dev/null -w "%{http_code}" https://<YOUR_USERNAME>-<YOUR_SPACE_NAME>.hf.space || true
-      - name: Log status
+          # ⚠️ 请修改为你的 Space 地址
+          curl -s https://huggingface.co/spaces/huluwaa/chatgpt2api
+          curl -s https://huluwaa-chatgpt2api.hf.space
+      - name: Log status  # 记录日志
         run: echo "Keep-alive ping sent at $(date)"
