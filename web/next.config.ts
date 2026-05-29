@@ -21,7 +21,8 @@ const nextConfig: NextConfig = {
     env: {
         NEXT_PUBLIC_APP_VERSION: appVersion,
     },
-    output: 'export',
+    // Vercel 部署需要 SSR 模式以支持 API Routes；Docker 构建保持静态导出
+    output: process.env.VERCEL ? undefined : 'export',
     trailingSlash: true,
     images: {
         unoptimized: true,
